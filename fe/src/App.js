@@ -1,25 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
-import imageUrlBuilder from "@sanity/image-url";
+// import imageUrlBuilder from "@sanity/image-url";
 import client from "./utils/useSanity";
-import useGetFigures from "./utils/useGetFigures";
-import { Slide, P, useReveal, H1, RevealJS } from "@gregcello/revealjs-react";
+import { Slide, P, H1, RevealJS } from "@gregcello/revealjs-react";
 import { useQuery } from "react-query";
 
-const builder = imageUrlBuilder(client);
-function urlFor(source) {
-  return builder.image(source);
-}
-
-const serializers = {
-  types: {
-    code: (props) => (
-      <pre data-language={props.node.language}>
-        <code>{props.node.code}</code>
-      </pre>
-    ),
-  },
-};
+// const builder = imageUrlBuilder(client);
+// function urlFor(source) {
+//   return builder.image(source);
+// }
 
 function App() {
   const imgSlides = useQuery(
@@ -94,7 +83,7 @@ function App() {
         {textSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <P>
-              <BlockContent blocks={fig.body} serializers={serializers} />
+              <BlockContent blocks={fig.body} />
             </P>
           </Slide>
         ))}
