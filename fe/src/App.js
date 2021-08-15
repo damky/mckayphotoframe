@@ -24,11 +24,17 @@ const serializers = {
 function App() {
   const imgSlides = useQuery(
     "imgSlides",
-    async () => await client.fetch(`*[_type == "figure"]{_id, image}`)
+    async () => await client.fetch(`*[_type == "sanity.imageAsset"]{_id, url}`)
   );
   const textSlides = useQuery(
     "textSlides",
-    async () => await client.fetch(`*[_type == "text"]{_id, text}`)
+    async () => await client.fetch(`*[_type == "richText"]`)
+  );
+  const videoSlides = useQuery("video", async () =>
+    client.fetch(`*[_type == "sanity.fileAsset"]`)
+  );
+  const youTubeSlides = useQuery("youTube", async () =>
+    client.fetch(`*[_type == "youTube"]`)
   );
 
   return (
@@ -47,11 +53,12 @@ function App() {
         pause={false}
         autoPlayMedia={true}
         autoAnimateEasing="ease-in-out"
-        autoSlide={3000}
+        autoSlide={6000}
         autoSlideStoppable={false}
         hideCursorTime={1000}
         width={"100%"}
         height={"100%"}
+        margin={0}
       >
         <Slide>
           <H1>
@@ -59,16 +66,33 @@ function App() {
           </H1>
         </Slide>
         {imgSlides.data?.map((fig) => (
-          <Slide key={fig._id}>
+          <Slide key={fig._id} backgroundColor="#000">
             <img
-              style={{ maxWidth: "100%" }}
-              src={urlFor(fig.image.asset._ref).url()}
+              style={{ maxWidth: "100%", maxHeight: "100vh", margin: 0 }}
+              // src={urlFor(fig.image.asset._ref).url()}
+              src={fig.url}
               alt=""
             />
           </Slide>
         ))}
+        {videoSlides.data?.map((vid) => (
+          <Slide
+            key={vid._id}
+            backgroundVideo={vid.url}
+            backgroundVideoMuted="true"
+          ></Slide>
+        ))}
+        {youTubeSlides.data?.map((vid) => (
+          <Slide
+            key={vid._id}
+            backgroundIframe={`https://www.youtube.com/embed/${
+              vid.videoLink.match(/youtu\.be\/(.+)\/?/)[1]
+            }?&autoplay=1&mute=1`}
+          ></Slide>
+        ))}
+        {console.log(textSlides.data)}
         {textSlides.data?.map((fig) => (
-          <Slide key={fig._id}>
+          <Slide key={fig._id} backgroundColor="navy">
             <P>
               <BlockContent blocks={fig.body} serializers={serializers} />
             </P>
