@@ -2,46 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { H1, RevealJS, Slide } from "@gregcello/revealjs-react";
-import { Main, P } from "@gregcello/revealjs-react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 ReactDOM.render(
-  <>
-    <RevealJS
-      plugins={[]}
-      controls={false}
-      controlsTutorial={false}
-      controlsBackArrows="hidden"
-      progress={false}
-      slideNumber={false}
-      showSlideNumber="print"
-      hash={true}
-      loop={true}
-      shuffle={true}
-      pause={false}
-      autoPlayMedia={true}
-      autoAnimateEasing="ease-in-out"
-      autoSlide={3000}
-      autoSlideStoppable={false}
-      hideCursorTime={1000}
-      width={100.0}
-      height={100.0}
-    >
-      <Slide>
-        <H1>
-          <P>Hello, World!</P>
-        </H1>
-      </Slide>
-      <Slide>
-        <h1>
-          <p>Hello, World!</p>
-        </h1>
-      </Slide>
-      <Slide>3</Slide>
-      <Slide>4</Slide>
-      <Slide>5</Slide>
-    </RevealJS>
-  </>,
+  <QueryClientProvider client={queryClient}>
+    <App />
+  </QueryClientProvider>,
   document.querySelector("#root")
 );
 
