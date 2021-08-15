@@ -92,7 +92,7 @@ function App() {
         ))}
         {console.log(textSlides.data)}
         {textSlides.data?.map((fig) => (
-          <Slide key={fig._id} backgroundColor="navy">
+          <Slide key={fig._id} backgroundColor="#000">
             <P>
               <BlockContent blocks={fig.body} serializers={serializers} />
             </P>
