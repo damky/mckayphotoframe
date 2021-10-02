@@ -2,7 +2,7 @@ import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 // import imageUrlBuilder from "@sanity/image-url";
 import client from "./utils/useSanity";
-import { Slide, P, RevealJS } from "@gregcello/revealjs-react";
+import { /* Slide, P, */ RevealJS } from "@gregcello/revealjs-react";
 import { useQuery } from "react-query";
 
 // const builder = imageUrlBuilder(client);
@@ -11,20 +11,20 @@ import { useQuery } from "react-query";
 // }
 
 function App() {
-  const imgSlides = useQuery(
-    "imgSlides",
-    async () => await client.fetch(`*[_type == "sanity.imageAsset"]{_id, url}`)
-  );
-  const textSlides = useQuery(
-    "textSlides",
-    async () => await client.fetch(`*[_type == "richText"]`)
-  );
+  // const imgSlides = useQuery(
+  //   "imgSlides",
+  //   async () => await client.fetch(`*[_type == "sanity.imageAsset"]{_id, url}`)
+  // );
+  // const textSlides = useQuery(
+  //   "textSlides",
+  //   async () => await client.fetch(`*[_type == "richText"]`)
+  // );
   const videoSlides = useQuery("video", async () =>
     client.fetch(`*[_type == "sanity.fileAsset"]`)
   );
-  const youTubeSlides = useQuery("youTube", async () =>
-    client.fetch(`*[_type == "youTube"]`)
-  );
+  // const youTubeSlides = useQuery("youTube", async () =>
+  //   client.fetch(`*[_type == "youTube"]`)
+  // );
 
   return (
     <>
