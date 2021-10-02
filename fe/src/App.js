@@ -1,8 +1,8 @@
 import React from "react";
-// import BlockContent from "@sanity/block-content-to-react";
-// import imageUrlBuilder from "@sanity/image-url";
+import BlockContent from "@sanity/block-content-to-react";
+import imageUrlBuilder from "@sanity/image-url";
 import client from "./utils/useSanity";
-import { /* Slide, P, */ RevealJS } from "@gregcello/revealjs-react";
+import { Slide, P, RevealJS } from "@gregcello/revealjs-react";
 import { useQuery } from "react-query";
 
 // const builder = imageUrlBuilder(client);
@@ -11,20 +11,20 @@ import { useQuery } from "react-query";
 // }
 
 function App() {
-  // const imgSlides = useQuery(
-  //   "imgSlides",
-  //   async () => await client.fetch(`*[_type == "sanity.imageAsset"]{_id, url}`)
-  // );
-  // const textSlides = useQuery(
-  //   "textSlides",
-  //   async () => await client.fetch(`*[_type == "richText"]`)
-  // );
+  const imgSlides = useQuery(
+    "imgSlides",
+    async () => await client.fetch(`*[_type == "sanity.imageAsset"]{_id, url}`)
+  );
+  const textSlides = useQuery(
+    "textSlides",
+    async () => await client.fetch(`*[_type == "richText"]`)
+  );
   const videoSlides = useQuery("video", async () =>
     client.fetch(`*[_type == "sanity.fileAsset"]`)
   );
-  // const youTubeSlides = useQuery("youTube", async () =>
-  //   client.fetch(`*[_type == "youTube"]`)
-  // );
+  const youTubeSlides = useQuery("youTube", async () =>
+    client.fetch(`*[_type == "youTube"]`)
+  );
 
   return (
     <>
@@ -49,7 +49,7 @@ function App() {
         height={"100%"}
         margin={0}
       >
-        {/* {imgSlides.data?.map((fig) => (
+        {imgSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <img
               style={{ maxWidth: "100%", maxHeight: "100vh", margin: 0 }}
@@ -58,31 +58,31 @@ function App() {
               alt=""
             />
           </Slide>
-        ))} */}
-        {/* {videoSlides.data?.map((vid) => (
+        ))}
+        {videoSlides.data?.map((vid) => (
           <Slide
             key={vid._id}
             backgroundVideo={vid.url}
             backgroundVideoMuted="true"
           ></Slide>
-        ))} */}
+        ))}
         {console.log({videoSlides})}
-        {/* {youTubeSlides.data?.map((vid) => (
+        {youTubeSlides.data?.map((vid) => (
           <Slide
             key={vid._id}
             backgroundIframe={`https://www.youtube.com/embed/${
               vid.videoLink.match(/youtu\.be\/(.+)\/?/)[1]
             }?&autoplay=1&mute=1`}
           ></Slide>
-        ))} */}
-        {/* {console.log(textSlides.data)} */}
-        {/* {textSlides.data?.map((fig) => (
+        ))}
+        {console.log(textSlides.data)}
+        {textSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <P>
               <BlockContent blocks={fig.body} />
             </P>
           </Slide>
-        ))} */}
+        ))}
       </RevealJS>
     </>
   );
