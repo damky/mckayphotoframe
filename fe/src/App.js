@@ -75,7 +75,7 @@ function App() {
             }?&autoplay=1&mute=1`}
           ></Slide>
         ))}
-        {console.log(textSlides.data)}
+        {/* {console.log(textSlides.data)} */}
         {textSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <P>
