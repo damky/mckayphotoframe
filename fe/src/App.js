@@ -1,6 +1,6 @@
 import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
-import imageUrlBuilder from "@sanity/image-url";
+// import imageUrlBuilder from "@sanity/image-url";
 import client from "./utils/useSanity";
 import { Slide, P, RevealJS } from "@gregcello/revealjs-react";
 import { useQuery } from "react-query";
