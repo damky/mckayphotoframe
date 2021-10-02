@@ -2,7 +2,7 @@ import React from "react";
 import BlockContent from "@sanity/block-content-to-react";
 // import imageUrlBuilder from "@sanity/image-url";
 import client from "./utils/useSanity";
-import { Slide, P, H1, RevealJS } from "@gregcello/revealjs-react";
+import { Slide, P, RevealJS } from "@gregcello/revealjs-react";
 import { useQuery } from "react-query";
 
 // const builder = imageUrlBuilder(client);
@@ -42,19 +42,14 @@ function App() {
         pause={false}
         autoPlayMedia={true}
         autoAnimateEasing="ease-in-out"
-        autoSlide={6000}
+        autoSlide={10000}
         autoSlideStoppable={false}
         hideCursorTime={1000}
         width={"100%"}
         height={"100%"}
         margin={0}
       >
-        <Slide>
-          <H1>
-            <P>Hello, World!</P>
-          </H1>
-        </Slide>
-        {imgSlides.data?.map((fig) => (
+        {/* {imgSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <img
               style={{ maxWidth: "100%", maxHeight: "100vh", margin: 0 }}
@@ -63,30 +58,31 @@ function App() {
               alt=""
             />
           </Slide>
-        ))}
-        {videoSlides.data?.map((vid) => (
+        ))} */}
+        {/* {videoSlides.data?.map((vid) => (
           <Slide
             key={vid._id}
             backgroundVideo={vid.url}
             backgroundVideoMuted="true"
           ></Slide>
-        ))}
-        {youTubeSlides.data?.map((vid) => (
+        ))} */}
+        {console.log({videoSlides})}
+        {/* {youTubeSlides.data?.map((vid) => (
           <Slide
             key={vid._id}
             backgroundIframe={`https://www.youtube.com/embed/${
               vid.videoLink.match(/youtu\.be\/(.+)\/?/)[1]
             }?&autoplay=1&mute=1`}
           ></Slide>
-        ))}
-        {console.log(textSlides.data)}
-        {textSlides.data?.map((fig) => (
+        ))} */}
+        {/* {console.log(textSlides.data)} */}
+        {/* {textSlides.data?.map((fig) => (
           <Slide key={fig._id} backgroundColor="#000">
             <P>
               <BlockContent blocks={fig.body} />
             </P>
           </Slide>
-        ))}
+        ))} */}
       </RevealJS>
     </>
   );
