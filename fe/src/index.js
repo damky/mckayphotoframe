@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App2 from "./App2";
 // import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <App2 />
   </QueryClientProvider>,
   document.querySelector("#root")
 );
