@@ -98,7 +98,7 @@ function ItemGetter({ ids, lineUp }) {
     <>
       {activeItem.isSuccess &&
         activeItem?.data[0]?._type === "sanity.imageAsset" && (
-          <img src={activeItem.isSuccess && activeItem?.data[0]?.url} alt="" />
+          <img src={activeItem.isSuccess && `https://damkymedia.mo.cloudinary.net/mckayPhotoFrame/${activeItem?.data[0]?.url.replace('https://cdn.sanity.io/images/dxcjf8vw/production/','')}`} alt="" />
         )}
       {activeItem.isSuccess && activeItem?.data[0]?._type === "youTube" && (
         <iframe
