@@ -5,7 +5,7 @@ const client = sanityClient({
   dataset: "production",
   apiVersion: "2021-08-14",
   token: "", // or leave blank to be anonymous user
-  useCdn: false, // `false` if you want to ensure fresh data
+  useCdn: true, // `false` if you want to ensure fresh data
 });
 
 export default client;
